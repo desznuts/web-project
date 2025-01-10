@@ -1,0 +1,100 @@
+/* Base styles for desktop */
+.card-slider-container {
+    position: relative;
+    width: 60%;
+    overflow: hidden;
+    left: 27rem;
+    top: -15rem;
+}
+
+.card-slider {
+    display: flex;
+    overflow-x: auto; /* Hide horizontal scrollbar */
+    gap: 16px; /* Space between cards */
+    padding: 16px;
+    scroll-snap-type: x mandatory; /* Snap to cards */
+    scroll-behavior: smooth; /* Smooth scrolling effect */
+    scroll-snap-align: start;
+}
+
+.card-slider::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for a cleaner look */
+}
+
+.card {
+    flex: 0 0 auto; /* Prevent flex items from shrinking or growing */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    will-change: opacity, transform;
+    scroll-snap-align: start; /* Align the card at the start */
+    width: 350px; /* Adjust width as needed */
+}
+
+/* Scroll button styles */
+.scroll-button {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 100;
+    transition: opacity 0.5s ease;
+}
+
+.card-slider-container:hover .scroll-button {
+    opacity: 1; /* Show buttons on hover */
+}
+
+.scroll-button.left {
+    left: 0;
+}
+
+.scroll-button.right {
+    right: 0;
+}
+
+@media (min-width: 835px) and (max-width: 1030px) {
+    .card-slider-container {
+        left: 23rem;
+    }
+}
+
+@media (min-width: 700px) and (max-width: 835px){
+    .card-slider-container{
+        top: 1rem;
+        left: 2rem;
+        width: 90%;
+    }
+}
+
+
+/* Mobile styles (max-width: 600px) */
+@media (max-width: 600px) {
+    .card-slider-container {
+        position: relative;
+        width: 96%;
+        left: 0;
+        top: 2rem;
+    }
+
+    .card {
+        width: 150px; /* Smaller cards for mobile */
+    }
+
+    .card h2 {
+        font-size: 1.5rem;
+    }
+
+    .card p {
+        font-size: .9rem;
+    }
+
+    .scroll-button {
+        font-size: 1.5rem; /* Smaller buttons */
+    }
+}
+

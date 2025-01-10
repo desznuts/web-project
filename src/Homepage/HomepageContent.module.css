@@ -1,0 +1,380 @@
+/* Target all scrollbars */
+::-webkit-scrollbar {
+  width: 10px; /* Set the width of the scrollbar */
+  height: 10px; /* Set the height of the scrollbar */
+}
+
+/* Target all scrollbar thumbs */
+::-webkit-scrollbar-thumb {
+  background-color: #29c2ca; /* Set the background color of the scrollbar thumb */
+  border-radius: 10px; /* Set the border radius of the scrollbar thumb */
+}
+
+/* Target all scrollbar tracks */
+::-webkit-scrollbar-track {
+  background-color: #fefefe; /* Set the background color of the scrollbar track */
+  border-radius: 8px; /* Set the border radius of the scrollbar track */
+}
+
+
+.content {
+  height: auto;
+  color: #0B1215;
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack items vertically */
+  align-items: flex-start; /* Align items to the start */
+  margin-bottom: 3rem;
+  overflow: hidden;
+}
+
+.recent-title {
+  margin-top: 10rem;
+}
+
+.recent-title, .allevent-title {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  font-size: 3rem; /* Adjust size as needed */
+  margin-left: 5rem;
+}
+
+.recent-title .top,
+.recent-title .bottom {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #5f086c;
+}
+
+.line {
+  width: 100px;
+  height: 3px;
+  background-color: #5f086c;
+  border-radius: 2px;
+  margin: 10px 0;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.titleContainer .top,
+.titleContainer .bottom {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #5f086c;
+}
+
+
+.searchContainer {
+  margin-top: 20px; /* Space above the search bar */
+}
+
+.searchBar {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.searchBar:focus {
+  border-color: #086868; /* Change border color on focus */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Add shadow on focus */
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 20px;
+  width: 60%;
+  margin-left: 27rem;
+  margin-top: -17rem;
+}
+
+.gridItem img {
+  width: 200px;
+  height: 200px;
+  /* border-radius: 8px; */
+  transition: transform 0.3s ease;
+  object-fit: cover;
+}
+
+.gridItem {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.gridItem img {
+  width: 200px;
+  height: 200px;
+}
+
+.gridItem .description {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  /* border-radius: 8px; */
+  color: #F3F4F6;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  text-align: center;
+  font-size: 1.3rem;
+  box-sizing: border-box;
+  transition: opacity 0.3s ease;
+  opacity: 0; /* Initially hide the description */
+}
+
+.gridItem:hover .description {
+  opacity: 1; /* Show the description when hovering over the image */
+}
+
+.gridItem img:hover{
+  transform: scale(1.05);
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px;
+  /* border: 1px solid red; */
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+  font-size: 10px;
+  font-size: 15px;
+  padding: 5px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(8, 104, 104, 0.8);
+  color: #F3F4F6;
+  cursor: pointer;
+}
+
+.button-container button {
+  border-radius: 0%;
+  color: #0B1215;
+  background-color: transparent;
+}
+
+.button-container button:hover {
+  color: #5f086c;
+  font-weight: bold;
+}
+
+/* For static testing only, tbe */
+.btn1 {
+  color: #5f086c;
+  border-bottom: 2px solid #5f086c;
+}
+.next-button {
+  font-size: 18px;
+}
+
+
+/* Ipad Pro */
+@media (min-width: 835px) and (max-width: 1030px){
+  .gridContainer {
+    grid-template-columns: repeat(3, minmax(120px, 1fr));
+    margin-left: 23rem;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Ipad mini */
+@media (min-width: 700px) and (max-width: 835px){
+  .content {
+    overflow: hidden;
+  }
+
+  .titleContainer {
+    flex-direction: row;
+  }
+
+  .titleContainer .top {
+    margin-right: 1rem;
+  }
+
+  .gridContainer{
+    margin-left: 3rem;
+    margin-top: 2rem;
+}
+
+} 
+
+
+/* Mobile Styles */
+@media (max-width: 600px) {
+  .content {
+    flex-wrap: wrap;
+    align-content: center;
+  }
+
+  .recent-title, .allevent-title {
+      font-size: 2.5rem;
+      margin-left: 1rem;
+      margin-top: -1rem;
+  }
+
+  .line {
+      width: 60px; /* Smaller line for mobile */
+  }
+
+  .searchBar {
+    width: 90vw;
+  }
+
+  .gridContainer {
+      /* border: 1px solid red; */
+      display: grid;
+      grid-template-columns: repeat(2, minmax(100px, 1fr));
+      margin-left: 1rem;
+      margin-top: 2rem;
+      width: 90%;
+      justify-items: start;
+  }
+
+  
+.gridItem img {
+  width: 150px;
+  height: 150px;
+}
+ 
+  .gridItem .description {
+    width: 80%;
+  }
+  .button-container button {
+    width: 25px;
+    height: 25px;
+  }
+
+  .titleContainer {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: row;
+    font-size: 2.5rem;
+}
+
+/* Adjust the top and bottom spans to have consistent spacing */
+.titleContainer .top,
+.titleContainer .bottom {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #5f086c;
+    margin-right: 0.5rem; /* Space between the text spans */
+  }
+
+  .line {
+    display: none;
+  }
+}
+
+
+/* Modal overlay (dark background) */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+/* Modal itself (styled as a card) */
+.modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px; /* Rounded corners */
+  max-width: 500px;
+  width: 80%;
+  max-height: 550px;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Card shadow */
+  position: relative;
+  border: 1px solid #e0e0e0;
+}
+
+/* Modal image (no zooming, keeps aspect ratio) */
+.modalImage {
+  width: 100%;
+  border-radius: 4px;
+  height: auto;
+}
+
+.modal p {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}
+
+
+/* Close button */
+.closeModalButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+}
+
+.bookTicketButton {
+  width: max-content;
+  margin-top: 1rem;
+  padding: 1rem 1.2rem;
+  background-color: #086868;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.bookTicketButton:active {
+  transform: scale(0.98);
+}
+
+.bookingForm label {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.bookingForm input {
+  width: 100%;
+  padding: 0.8rem;
+  margin-top: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.confirmButton {
+  width: max-content;
+  margin-top: 1rem;
+  padding: 1rem 1.2rem;
+  background-color: #086868;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

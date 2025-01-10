@@ -1,0 +1,102 @@
+.aboutContent {
+    width: 100vw;
+    /* height: 100vh; */
+    margin: 0 auto;
+    padding: 3rem;
+    text-align: center;
+    background: linear-gradient(to top right, #086868, #5f086c);
+    color: #F3F4F6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.aboutContent h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.aboutContent p {
+    line-height: 1.6;
+}
+
+.aboutSection {
+    /* border: 1px solid #ccc; */
+    max-width: 700px;
+    margin-top: 3rem;
+}
+
+.aboutSection p{
+    font-size: 1.1rem;
+}
+
+.mvSection {
+    /* border: 1px solid #ccc; */
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    font-size: 0.875rem;
+    margin-top: 5rem;
+    max-width: 700px;
+}
+
+.missionSection, .visionSection {
+    flex: 1;
+    /* border: 1px solid red; */
+    max-width: 500px;
+    height: 200px;
+    text-align: left;
+}
+
+.mvSection h2 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.mvSection p {
+    font-size: 0.875rem;
+}
+
+.keyPeopleSection {
+    max-width: 700px;
+    margin-top: 5rem;
+}
+.keyPeopleSection h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.keyPersonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.keyPerson {
+    text-align: center;
+}
+
+.keyPerson img {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border: 2px solid #14cece;
+    transition: transform 0.2s ease-in-out;
+}
+
+.keyPerson img:hover {
+    transform: scale(1.1); 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.keyPerson h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.keyPerson p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}

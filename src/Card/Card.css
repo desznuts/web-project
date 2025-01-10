@@ -1,0 +1,44 @@
+.card {
+    /* position: relative; */
+    flex: 0 0 auto;
+    width: 350px; /* Adjust as needed */
+}
+
+.image-container {
+    position: relative;
+}
+
+.card-image {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+}
+
+.text-overlay {
+    height: 100px;
+    position: absolute;
+    top: 15.7rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    padding-left: 1rem;
+    color: white; /* Change text color for visibility */
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent background */
+    text-align: left;
+}
+
+.card-image {
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+}
+
+@media (max-width: 600px) {
+    .card-image {
+        width: 150px;
+        height: 150px;
+    }
+}

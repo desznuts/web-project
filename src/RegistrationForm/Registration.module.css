@@ -1,0 +1,132 @@
+/* The Modal Background */
+.modal {
+    color: #086868;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Dark background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Modal Content */
+  .modalContent {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+  }
+  
+  /* Close Button */
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #086868; /* Matching the header color */
+  }
+  
+  /* Form Styling */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  label {
+    font-size: 1rem;
+    text-align: left;
+  }
+  
+  input {
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  .error {
+    color: tomato;
+    font-size: small;
+  }
+
+  .signupbtn {
+    background-color: #086868;
+    color: white;
+    padding: 0.7rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .signupbtn:hover {
+    background-color: #29c2ca;
+  }
+  
+  /* Sign-up link styling */
+  .loginText {
+    margin-top: 1rem;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem; /* Space between "New here?" and the button */
+  }
+  
+  .loginBtn {
+    margin-top: .1rem;
+    background: none;
+    padding: 5px;
+    width: auto;
+    border: none;
+    color: #086868;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .passwordStrength {
+    font-size: 12px;
+    color: #086868;
+  }
+  
+  .passwordStrength span {
+    font-weight: bold;
+
+  }
+  
+  .passwordStrength progress {
+    width: 60%;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  progress::-webkit-progress-bar {
+    background-color: #f3f3f3;
+    border-radius: 5px;
+  }
+  
+  progress::-webkit-progress-value {
+    background-color: #086868; /* Change this color to your desired progress color */
+    border-radius: 5px;
+  }
+  
+  progress::-moz-progress-bar {
+    background-color: #086868; /* Change this color to your desired progress color */
+    border-radius: 5px;
+  }
+  
+  .passwordStrength ul {
+    padding-left: .7rem;
+    list-style-type: none;
+    text-align: left;
+  }
