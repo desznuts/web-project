@@ -119,4 +119,9 @@
         top: -5.5px;
         right: -15px;
     }
+
+    .modalContent {
+        padding: 10px; /* Reduce padding for mobile view */
+        overflow-x: hidden;
+    }
 }
