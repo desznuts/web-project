@@ -121,6 +121,7 @@
     }
 
     .modalContent {
+        padding: 20px;
         overflow-x: hidden;
     }
 }
