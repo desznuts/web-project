@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './CardDetailModal.module.css';
 import api from '../api';
 import LoginModal from '../LoginForm/Login';
-import RegistrationModal from '../RegistrationForm/Registration';   
+import RegistrationModal from '../RegistrationForm/Registration';
 
 const BookingModal = ({ card, closeModal, userEmail }) => {
     const [name, setName] = useState('');
@@ -10,7 +10,7 @@ const BookingModal = ({ card, closeModal, userEmail }) => {
     const [tickets, setTickets] = useState(1);
     const [paymentMethod, setPaymentMethod] = useState('creditCard');
     const [specialRequests, setSpecialRequests] = useState('');
-    const [loading, setLoading] = useState(false);  
+    const [loading, setLoading] = useState(false);
 
     const handleBooking = async () => {
         setLoading(true);
@@ -115,50 +115,42 @@ const CardDetailModal = ({ card, closeModal }) => {
 
     if (!card) return null;
 
-    const checkAuthentication = async () => {
-        try {
-            const response = await api.get('/user-status');
-            if (response.data.isAuthenticated) {
-                setBookingModalOpen(true);
-            } else {
-                setLoginModalOpen(true);
-            }
-        } catch (error) {
-            console.error('Error checking authentication status', error);
+    const checkAuthentication = () => {
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        if (isLoggedIn) {
+            setBookingModalOpen(true);
+        } else {
+            setLoginModalOpen(true);
         }
     };
 
-    const openBookingModal = () => {
-        checkAuthentication();
+    const handleLoginSuccess = () => {
+        setLoginModalOpen(false);
+        setBookingModalOpen(true);
     };
 
-    const closeBookingModal = () => {
+    const handleCloseLoginModal = () => {
+        setLoginModalOpen(false);
+    };
+
+    const handleCloseBookingModal = () => {
         setBookingModalOpen(false);
     };
 
-    const closeLoginModal = () => {
-        setLoginModalOpen(false);
-    };
-
-    const closeRegisterModal = () => {
-        setRegisterModalOpen(false);
-    };
-
-    const switchToRegisterModal = () => {
-        setLoginModalOpen(false);
+    const handleOpenRegisterModal = () => {
         setRegisterModalOpen(true);
+        setLoginModalOpen(false);
     };
 
-    const switchToLoginModal = () => {
+    const handleCloseRegisterModal = () => {
         setRegisterModalOpen(false);
-        setLoginModalOpen(true);
     };
 
     return (
         <>
-            {bookingModalOpen && <BookingModal card={card} closeModal={closeBookingModal} />}
-            {loginModalOpen && <LoginModal closeModal={closeLoginModal} openRegistrationModal={switchToRegisterModal} />}
-            {registerModalOpen && <RegistrationModal closeModal={closeRegisterModal} openLoginModal={switchToLoginModal} />}
+            {bookingModalOpen && <BookingModal card={card} closeModal={handleCloseBookingModal} />}
+            {loginModalOpen && <LoginModal closeModal={handleCloseLoginModal} openRegistrationModal={handleOpenRegisterModal} onLoginSuccess={handleLoginSuccess} />}
+            {registerModalOpen && <RegistrationModal closeModal={handleCloseRegisterModal} openLoginModal={() => setLoginModalOpen(true)} />}
             {!bookingModalOpen && !loginModalOpen && !registerModalOpen && (
                 <div className={styles.modalOverlay}>
                     <div className={styles.modalContent}>
@@ -168,7 +160,7 @@ const CardDetailModal = ({ card, closeModal }) => {
                         <p>{card.content}</p>
                         <p>Date: {card.date}</p>
                         <p>Ticket Price: P{card.price}</p>
-                        <button className={styles.bookNowButton} onClick={openBookingModal}>Book Ticket</button>
+                        <button className={styles.bookNowButton} onClick={checkAuthentication}>Book Ticket</button>
                     </div>
                 </div>
             )}
