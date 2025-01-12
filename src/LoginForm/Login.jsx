@@ -38,7 +38,7 @@ function LoginModal({ closeModal, openRegistrationModal, onLoginSuccess }) {
     const credentials = { email, password };
   
     try {
-      const response = await api.post('/login', credentials);
+      const response = await api.post('/login', credentials, { withCredentials: true });
       console.log('Login successful', response);
       setSuccess('Login successful.');
       setError(null);
