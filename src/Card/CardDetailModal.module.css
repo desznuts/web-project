@@ -116,7 +116,7 @@
   @media (max-width: 600px) {
     .closeButton {
         font-size: 24px; /* Increase the font size for mobile view */
-        top: -5.5px; /* Adjust the position if needed */
-        /* right: 10px; Adjust the position if needed */
+        top: -5.5px;
+        right: -3px; 
     }
 }
