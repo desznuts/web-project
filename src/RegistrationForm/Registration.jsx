@@ -20,7 +20,6 @@ function RegistrationModal({ closeModal, openLoginModal }) {
     setPasswordStrength(result.score);
   }
 
-
   const handleRegister = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -42,8 +41,6 @@ function RegistrationModal({ closeModal, openLoginModal }) {
       return;
     }
 
-    
-    
     const userData = { email, password, password_confirmation: confirmPassword };
 
     try {

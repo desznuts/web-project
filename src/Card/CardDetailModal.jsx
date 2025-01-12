@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import styles from './CardDetailModal.module.css';
 import api from '../api';
+import LoginModal from '../LoginForm/Login';
+import RegistrationModal from '../RegistrationForm/Registration';   
 
 const BookingModal = ({ card, closeModal, userEmail }) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState(userEmail || '');
-    const [phone, setPhone] = useState('');
     const [tickets, setTickets] = useState(1);
     const [paymentMethod, setPaymentMethod] = useState('creditCard');
     const [specialRequests, setSpecialRequests] = useState('');
@@ -14,7 +15,7 @@ const BookingModal = ({ card, closeModal, userEmail }) => {
     const handleBooking = async () => {
         setLoading(true);
         try {
-            const response = await api.post('/bookings',{
+            const response = await api.post('/bookings', {
                 name,
                 email,
                 tickets,
@@ -25,7 +26,7 @@ const BookingModal = ({ card, closeModal, userEmail }) => {
                 card_price: card.price,
                 total_price: totalPrice,
             });
-            alert(`Booking ${tickets} ticket(s) for ${card.title} by ${name} (${email}, ${phone}) using ${paymentMethod}. Special requests: ${specialRequests}`);
+            alert(`Booking ${tickets} ticket(s) for ${card.title} by ${name} (${email}) using ${paymentMethod}. Special requests: ${specialRequests}`);
             closeModal();
         } catch (error) {
             console.error('Booking failed:', error.response.data);
@@ -109,34 +110,69 @@ const BookingModal = ({ card, closeModal, userEmail }) => {
 
 const CardDetailModal = ({ card, closeModal }) => {
     const [bookingModalOpen, setBookingModalOpen] = useState(false);
+    const [loginModalOpen, setLoginModalOpen] = useState(false);
+    const [registerModalOpen, setRegisterModalOpen] = useState(false);
 
     if (!card) return null;
 
+    const checkAuthentication = async () => {
+        try {
+            const response = await api.get('/user-status');
+            if (response.data.isAuthenticated) {
+                setBookingModalOpen(true);
+            } else {
+                setLoginModalOpen(true);
+            }
+        } catch (error) {
+            console.error('Error checking authentication status', error);
+        }
+    };
+
     const openBookingModal = () => {
-        setBookingModalOpen(true);
+        checkAuthentication();
     };
 
     const closeBookingModal = () => {
         setBookingModalOpen(false);
     };
 
+    const closeLoginModal = () => {
+        setLoginModalOpen(false);
+    };
+
+    const closeRegisterModal = () => {
+        setRegisterModalOpen(false);
+    };
+
+    const switchToRegisterModal = () => {
+        setLoginModalOpen(false);
+        setRegisterModalOpen(true);
+    };
+
+    const switchToLoginModal = () => {
+        setRegisterModalOpen(false);
+        setLoginModalOpen(true);
+    };
+
     return (
         <>
-        {bookingModalOpen && <BookingModal card={card} closeModal={closeBookingModal} />}
-        {!bookingModalOpen && (
-            <div className={styles.modalOverlay}>
-                <div className={styles.modalContent}>
-                    <button className={styles.closeButton} onClick={closeModal}>X</button>
-                    <img src={card.imgUrl} alt={card.title} />
-                    <h2>{card.title}</h2>
-                    <p>{card.content}</p>
-                    <p>Date: {card.date}</p>
-                    <p>Ticket Price: P{card.price}</p>
-                    <button className={styles.bookNowButton} onClick={openBookingModal}>Book Ticket</button>
+            {bookingModalOpen && <BookingModal card={card} closeModal={closeBookingModal} />}
+            {loginModalOpen && <LoginModal closeModal={closeLoginModal} openRegistrationModal={switchToRegisterModal} />}
+            {registerModalOpen && <RegistrationModal closeModal={closeRegisterModal} openLoginModal={switchToLoginModal} />}
+            {!bookingModalOpen && !loginModalOpen && !registerModalOpen && (
+                <div className={styles.modalOverlay}>
+                    <div className={styles.modalContent}>
+                        <button className={styles.closeButton} onClick={closeModal}>X</button>
+                        <img src={card.imgUrl} alt={card.title} />
+                        <h2>{card.title}</h2>
+                        <p>{card.content}</p>
+                        <p>Date: {card.date}</p>
+                        <p>Ticket Price: P{card.price}</p>
+                        <button className={styles.bookNowButton} onClick={openBookingModal}>Book Ticket</button>
+                    </div>
                 </div>
-            </div>
-        )}
-    </>
+            )}
+        </>
     );
 };
 
