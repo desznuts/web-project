@@ -4,7 +4,7 @@ import axios from "axios";
 // Ensure CSRF token is set before making requests
 export const fetchCSRFToken = async () => {
   try {
-    await axios.get('http://localhost:8000/sanctum/csrf-cookie', { withCredentials: true });
+    await axios.get('https://darkslategray-mongoose-800641.hostingersite.com//sanctum/csrf-cookie', { withCredentials: true });
     console.log('CSRF token set');
   } catch (error) {
     console.error('Error fetching CSRF token:', error);
