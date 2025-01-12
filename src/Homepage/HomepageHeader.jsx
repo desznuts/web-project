@@ -18,18 +18,9 @@ function Header({ children }) {
     const [selectedCard, setSelectedCard] = useState(null);
 
     useEffect(() => {
-        const checkAuthenticationStatus = async () => {
-            try {
-                const response = await api.get('/user-status');
-                if (response.data.isAuthenticated) {
-                    setIsLoggedIn(true);
-                }
-            } catch (err) {
-                console.log(err);
-            }
-        };
-
-        checkAuthenticationStatus();
+        // Retrieve login state from local storage
+        const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        setIsLoggedIn(loggedIn);
     }, []);
 
     const openLoginModal = () => {
@@ -67,6 +58,7 @@ function Header({ children }) {
         try {
             await api.post('/logout');
             setIsLoggedIn(false);
+            localStorage.removeItem('isLoggedIn'); // Clear login state from local storage
         } catch (err) {
             setError('Failed to logout. Please try again.');
         } finally {
@@ -76,6 +68,7 @@ function Header({ children }) {
 
     const handleLoginSuccess = () => {
         setIsLoggedIn(true);
+        localStorage.setItem('isLoggedIn', 'true'); // Set login state in local storage
         closeLoginModal();
     };
 
