@@ -51,7 +51,11 @@ function Header({ children }) {
     }
 
     const handleCardClick = (card) => {
-        setSelectedCard(card);
+        if (!isLoggedIn) {
+            openLoginModal();
+        } else {
+            setSelectedCard(card);
+        }
     };
 
     const closeCardDetailModal = () => {
