@@ -56,7 +56,7 @@ function Header({ children }) {
     const handleLogout = async () => {
         setLogoutLoading(true);
         try {
-            await api.post('/logout');
+            await api.post('/logout', {}, { withCredentials: true });
             setIsLoggedIn(false);
             localStorage.removeItem('isLoggedIn'); // Clear login state from local storage
         } catch (err) {
