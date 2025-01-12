@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create an Axios instance
 const api = axios.create({
-  baseURL: 'https://darkslategray-mongoose-800641.hostingersite.com/api', // Ensure this matches your Laravel API URL
+  baseURL: 'http://localhost:8000/api', // Ensure this matches your Laravel API URL
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
