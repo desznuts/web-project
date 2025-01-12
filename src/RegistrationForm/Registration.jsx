@@ -45,7 +45,7 @@ function RegistrationModal({ closeModal, openLoginModal }) {
 
     try {
       // Set CSRF Token first before sending registration request
-      await fetch('https://darkslategray-mongoose-800641.hostingersite.com//sanctum/csrf-cookie', { 
+      await fetch('https://darkslategray-mongoose-800641.hostingersite.com/sanctum/csrf-cookie', { 
         method: 'GET', 
         credentials: 'include' 
       });
