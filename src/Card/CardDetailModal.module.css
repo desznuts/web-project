@@ -112,3 +112,11 @@
       cursor: pointer;
       color: #333;
   }
+
+  @media (max-width: 600px) {
+    .closeButton {
+        font-size: 24px; /* Increase the font size for mobile view */
+        top: 5px; /* Adjust the position if needed */
+        right: 15px; /* Adjust the position if needed */
+    }
+}
